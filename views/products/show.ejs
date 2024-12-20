@@ -1,0 +1,75 @@
+<% layout('layouts/boilerplate.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+<div class="row mb-5">
+        <div class="col-lg-6 mt-3">
+            <div class="card mx-auto mt-5 shadow" style="width: 18rem;">
+                <img src="<%= product.img %>" class="card-img-top">
+                <div class="card-body">
+                    <h4>₹ <%= product.price %></h4>
+                  <h5 class="card-title"><%= product.name %></h5>
+                  <p class="card-text"><%= product.desc %></p>
+                  <a href="/products/<%=product._id%>/edit" class="btn btn-primary">Edit product</a>
+                  <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            
+        </div>
+        <div class="col-lg-4 mt-5">
+            <h1 class="display-4 ">Leave a Review</h1>
+            <form action="/products/<%=product._id%>/review" method="POST">
+                <div class="">
+                  <fieldset class="starability-basic mt-3">
+                    
+                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                  </fieldset>
+                </div>
+                <div class="mb-3">
+                  <label for="comment" class="form-label text-muted">Comment</label>
+                  <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                </div>
+                <button class="btn btn-sm btn-success">Add Review</button>
+            </form>
+        </div>
+</div>
+
+<hr>
+<div class="row" >
+  <% product.reviews.forEach((review) => { %>
+      <div class="col-lg-3">
+          <div class="card mx-auto mt-5 shadow" style="width: 18rem;">
+             <div class="card-body">
+              <h4>Anonymous </h4>
+              <p class="starability-result" data-rating="<%= review.rating %>">
+                Rated: <%= review.rating %> stars
+              </p>
+                <p class="card-text"><%= review.comment %></p>
+                <%
+                  
+                  const currentDate = new Date();
+                  const reviewDate = new Date(review.createdAt);
+                  const timeDiff = currentDate - reviewDate;
+                  // Convert the time difference into days (1000 ms * 60 seconds * 60 minutes * 24 hours)
+                  const daysAgo = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                %>
+                <p><%= daysAgo >= 1 ? `${daysAgo} days ago` : 'Today' %></p>
+                <a href="#" class="btn btn-danger">delete</a>
+              </div>
+            </div>
+      </div>
+
+  <% }) %>
+</div>
+ 
+    
