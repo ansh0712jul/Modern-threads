@@ -40,6 +40,7 @@ router.patch("/products/:id", async(req,res)=>{
 // to delete the product 
 router.delete("/products/:id", async(req,res) =>{
     let { id } = req.params;
+    const product = await Product.findById(id);
     await Product.findByIdAndDelete(id); 
     res.redirect("/products")
 })

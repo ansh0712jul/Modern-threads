@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Review = require("./Review.models");
 
 const productSchema = new mongoose.Schema({
     name:{
@@ -27,6 +28,15 @@ const productSchema = new mongoose.Schema({
         }
     ]
 },{timestamps:true});
+
+// middleware to delete reviews when product is deleted
+productSchema.post("findOneAndDelete", async function (product) {
+    if (product && product.reviews.length > 0) {
+        // Delete reviews only if product exists and has reviews
+        await Review.deleteMany({ _id: { $in: product.reviews } });
+    }
+});
+
 
 let Product = mongoose.model("Product",productSchema);
 module.exports = Product
