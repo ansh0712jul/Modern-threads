@@ -16,29 +16,43 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/products/new">New</a>
-          </li>
+          <% if(currentUser && currentUser.role === "seller"){ %>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/products/new">New</a>
+              </li>
+         <% }%>
+         
         </ul>
         <div class="d-flex">
-          <a href="/login" class="nav-link mx-3">
-            <i class="fa-solid fa-right-to-bracket"  data-bs-toggle="tooltip" 
-            data-bs-placement="bottom" 
-            data-bs-title="Login"></i>
-          </a>
-          <a href="/cart" class="nav-link mx-3">
-            <i class="fa-solid fa-cart-shopping" 
+          <% if (currentUser) { %>
+            <!-- Show Cart and Logout for logged-in users -->
+             <a class="nav-link">Hi👋, <%= currentUser.username %></a>
+            <a href="/user/cart" class="nav-link mx-3">
+              <i class="fa-solid fa-cart-shopping" 
                 data-bs-toggle="tooltip" 
                 data-bs-placement="bottom" 
-                data-bs-title="cart" 
+                data-bs-title="Cart" 
                 data-bs-custom-class="custom-tooltip">
-            </i>
-          <sup> <span class="badge bg-danger">2</span></sup></a>
-          <a href="/login" class="nav-link mx-3">
-            <i class="fa-solid fa-right-from-bracket" data-bs-toggle="tooltip" 
-            data-bs-placement="bottom" 
-            data-bs-title="Logout"></i>
-          </a>
+              </i>
+              <sup><span class="badge bg-danger"><%= currentUser.cart.length %></span></sup> <!-- Example badge, you can dynamically set the count -->
+            </a>
+            <a href="/logout" class="nav-link mx-3">
+              <i class="fa-solid fa-right-from-bracket" 
+                data-bs-toggle="tooltip" 
+                data-bs-placement="bottom" 
+                data-bs-title="Logout">
+              </i>
+            </a>
+            <% } else { %>
+              <!-- Show Login for non-logged-in users -->
+              <a href="/login" class="nav-link mx-3">
+                <i class="fa-solid fa-right-to-bracket" 
+                  data-bs-toggle="tooltip" 
+                  data-bs-placement="bottom" 
+                  data-bs-title="Login">
+                </i>
+              </a>
+            <% } %>
           
         </div>
       </div>

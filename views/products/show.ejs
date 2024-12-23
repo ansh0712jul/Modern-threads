@@ -10,10 +10,18 @@
                     <h4>₹ <%= product.price %></h4>
                   <h5 class="card-title"><%= product.name %></h5>
                   <p class="card-text"><%= product.desc %></p>
-                  <a href="/products/<%=product._id%>/edit" class="btn btn-primary">Edit product</a>
-                  <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger">Delete</button>
-                  </form>
+                  <% if(currentUser && currentUser.role === "seller"){%>
+                    <a href="/products/<%=product._id%>/edit" class="btn btn-primary">Edit product</a>
+                    <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
+                      <button class="btn btn-danger">Delete</button>
+                    </form>
+                  <%} else {%>
+                    <a href="#" class="btn btn-primary">Buy product</a>
+                    <form class="d-inline" action="/user/<%=product._id%>/add" method="POST">
+                      <button class="btn btn-danger">Add to Cart</button>
+                    </form>
+
+                  <%}%>
                 </div>
               </div>
             

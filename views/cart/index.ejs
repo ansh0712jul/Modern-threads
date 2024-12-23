@@ -1,0 +1,26 @@
+<% layout('layouts/boilerplate')%>
+<%- include('../partials/navbar.ejs') %>
+
+<div class="row mt-5">
+    <% user.cart.forEach((product) => {%>
+        <div class="col-lg-">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="<%=product.img%>" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><%=product.name%></h5>
+                      <p class="card-text"><%=product.desc%></p>
+                      <p class="card-text"><%=product.quantity%></p>
+                      <p class="card-text"><small class="text-body-secondary">Rs.<%=product.price%></small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    
+     <%})%>
+   
+</div>

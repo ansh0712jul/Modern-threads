@@ -30,7 +30,21 @@
       </div>
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" name="username" id="username">
+        <input type="text" class="form-control" id="username" name="username" aria-describedby="username">
+        
+      </div>
+      <div class="mb-2 ">
+        <p>Want to register as ? </p>
+        <div class="d-flex gap-3">
+          <div class="form-check ">
+            <label for="buyer" class="form-label">Buyer</label>
+            <input type="radio" class="form-check-input" id="buyer" name="role" value="buyer">
+          </div>
+          <div class="form-check">
+            <label for="seller" class="form-label">Seller</label>
+            <input type="radio" class="form-check-input" id="seller" name="role" value="seller" >
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>

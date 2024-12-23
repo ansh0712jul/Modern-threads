@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Review = require("./Review.models");
 
+
 const productSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -26,7 +27,11 @@ const productSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref:"Review"
         }
-    ]
+    ],
+    author:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 },{timestamps:true});
 
 // middleware to delete reviews when product is deleted
