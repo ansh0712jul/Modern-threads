@@ -1,0 +1,44 @@
+<% layout('layouts/boilerplate.ejs') %>
+<%-include('../partials/flash.ejs') %>
+<style>
+  /* Ensure the body takes up the full height of the screen */
+  body, html {
+    height: 100%;
+    margin: 0;
+  }
+
+  /* Container for centering the content */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  
+</style>
+
+<!-- Container to center the content -->
+<div class="container ">
+  <div class="form-container col-lg-6 border shadow p-5">
+    <form action="/register" method="POST">
+      <h1 class="text-center">Sign Up</h1>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="email">
+        
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" id="username">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" id="password">
+      </div>
+      
+      <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+      <p class="text-center mt-3 text-danger">Already have an account? <a href="/login">Login</a></p>
+    </form>
+  </div>
+</div>

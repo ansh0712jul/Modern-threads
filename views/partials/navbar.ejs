@@ -1,11 +1,10 @@
 <style>
     .navbar{
         height: 90px;
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         position: sticky;
         top: 0px;
         z-index: 100;
-        
     }
 </style>
 <nav class="navbar navbar-expand-lg bg-light shadow ">
@@ -21,10 +20,27 @@
           <a class="nav-link active" aria-current="page" href="/products/new">New</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex">
+          <a href="/login" class="nav-link mx-3">
+            <i class="fa-solid fa-right-to-bracket"  data-bs-toggle="tooltip" 
+            data-bs-placement="bottom" 
+            data-bs-title="Login"></i>
+          </a>
+          <a href="/cart" class="nav-link mx-3">
+            <i class="fa-solid fa-cart-shopping" 
+                data-bs-toggle="tooltip" 
+                data-bs-placement="bottom" 
+                data-bs-title="cart" 
+                data-bs-custom-class="custom-tooltip">
+            </i>
+          <sup> <span class="badge bg-danger">2</span></sup></a>
+          <a href="/login" class="nav-link mx-3">
+            <i class="fa-solid fa-right-from-bracket" data-bs-toggle="tooltip" 
+            data-bs-placement="bottom" 
+            data-bs-title="Logout"></i>
+          </a>
+          
+        </div>
       </div>
     </div>
   </nav>

@@ -1,0 +1,25 @@
+<style>
+    .alert{
+      height: 65px;
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 200;
+      color: white;
+      text-transform: uppercase;
+    }
+  </style>
+  
+  <% if(success && success.length>0){ %>
+    <div class="alert alert-success alert-dismissible fade show shadow" role="alert" >
+      <strong><%= success %> 🥳🥳</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <%}%>
+
+  <% if(error && error.length>0){ %>
+    <div class="alert alert-danger alert-dismissible fade show shadow" role="alert" >
+      <strong><%= error %>😩😩</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <%}%>

@@ -1,5 +1,7 @@
 <% layout('layouts/boilerplate.ejs') %>
 <%- include('../partials/navbar.ejs') %>
+
+<%-include('../partials/flash.ejs') %>
 <div class="row">
     <% products.forEach((product) => { %>
         <div class="col-lg-4">
