@@ -60,7 +60,10 @@
       <div class="col-lg-3">
           <div class="card mx-auto mt-5 shadow" style="width: 18rem;">
              <div class="card-body">
-              <h4>Anonymous </h4>
+              <div class="d-flex align-items-center gap-2">
+                <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" style="height: 40px;" alt="">
+                <p class="card-title mt-2"><%= currentUser.username.toUpperCase() %></p>
+              </div>
               <p class="starability-result" data-rating="<%= review.rating %>">
                 Rated: <%= review.rating %> stars
               </p>
@@ -73,8 +76,10 @@
                   // Convert the time difference into days (1000 ms * 60 seconds * 60 minutes * 24 hours)
                   const daysAgo = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
                 %>
-                <p><%= daysAgo >= 1 ? `${daysAgo} days ago` : 'Today' %></p>
-                <a href="#" class="btn btn-danger">delete</a>
+                <p>Posted on <%= daysAgo >= 1 ? `${daysAgo} days ago` : 'Today' %></p>
+                <form action="/products/<%=product._id%>/delete/<%=review._id%>?_method=DELETE" method="post" >
+                  <button class="btn btn-danger w-100">Delete</button>
+                </form>
               </div>
             </div>
       </div>
