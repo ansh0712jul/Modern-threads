@@ -22,6 +22,10 @@ const productSchema = new mongoose.Schema({
         type:String,
         trim:true
     },
+    avgRating:{
+        type:Number,
+        default:0
+    },
     reviews:[
         {
             type: mongoose.Schema.Types.ObjectId,

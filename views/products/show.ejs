@@ -3,7 +3,7 @@
 
 <%-include('../partials/flash.ejs') %>
 <div class="row mb-5">
-        <div class="col-lg-6 mt-3">
+        <div class="col-lg-6 mt-3 ">
             <div class="card mx-auto mt-5 shadow" style="width: 18rem;">
                 <img src="<%= product.img %>" class="card-img-top">
                 <div class="card-body">
@@ -57,10 +57,10 @@
 <hr>
 <div class="row" >
   <% product.reviews.forEach((review) => { %>
-      <div class="col-lg-3">
-          <div class="card mx-auto mt-5 shadow" style="width: 18rem;">
-             <div class="card-body">
-              <div class="d-flex align-items-center gap-2">
+      <div class="col-lg-3 ">
+          <div class="card mx-auto mt-5 shadow " style="width: 18rem;">
+             <div class="card-body ">
+              <div class="d-flex align-items-center gap-2 ">
                 <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" style="height: 40px;" alt="">
                 <p class="card-title mt-2"><%= currentUser.username.toUpperCase() %></p>
               </div>
@@ -87,4 +87,6 @@
   <% }) %>
 </div>
  
+
+
     

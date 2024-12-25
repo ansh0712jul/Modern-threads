@@ -8,16 +8,37 @@ const {
     isAuthor
     } = require("../middlewares/validation.middleware")
 
-router.get("/products", async(req,res)=>{
-    try{
-        let products = await Product.find({});
-        res.render("products/index.ejs",{products});
-    }
-    catch(e){
-        res.status(500).render("error.ejs",{err:e.message})
-    }
+    router.get("/products", async (req, res) => {
+        try {
+            let products = await Product.find({}).populate("reviews");
     
-})
+            // Iterate through each product with a for...of loop
+            for (let product of products) {
+                let avgRating = 0;
+    
+                // Calculate average rating if reviews exist
+                if (product.reviews.length > 0) {
+                    const totalRating = product.reviews.reduce((sum, review) => sum + review.rating, 0);
+                    avgRating = totalRating / product.reviews.length;
+                }
+    
+                // Set the avgRating on the product
+                product.avgRating = avgRating;
+    
+                // Save the product after updating avgRating
+                await product.save();
+            }
+            console.log("Products:", products);
+    
+            // Render updated products
+            res.render("products/index.ejs", { products });
+    
+        } catch (e) {
+            // Handle error
+            res.status(500).render("error.ejs", { err: e.message });
+        }
+    });
+    
 // show form to create a new product 
 router.get("/products/new", isLoggedIn, (req,res)=>{
     try{
