@@ -2,6 +2,15 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const User = require("../models/User.models");
+const sgMail = require("@sendgrid/mail");
+const dotenv = require("dotenv");
+dotenv.config();
+sgMail.setApiKey(process.env.SENDGRID_SECRET_API);
+
+ 
+
+
+
 
 // Route to show the registration form
 router.get("/register", (req, res) => {
@@ -46,13 +55,12 @@ router.get("/login", (req, res) => {
 router.post("/login", passport.authenticate("local",{
     failureRedirect: "/login",   // Redirect back to login on failure
     failureFlash: "Invalid credentials , Please try again!!!"  
-  }), (req,res) => {
-    let { username } = req.body;
-    req.flash("success", `Welcome ${username}! You are now logged in.`);
-    console.log(req.user.username)
+  }), (req, res) => {
+
+    console.log('email sent')
+     sendThankYouEmail(req.user.email);
     res.redirect("/products");
-  }
-)
+});
 
 // logout 
 router.get("/logout", (req, res) => {
@@ -64,6 +72,20 @@ router.get("/logout", (req, res) => {
     res.redirect("/login");
   });
 });
+
+
+//sendgrid emial functions 
+function sendThankYouEmail(userEmail) {
+  const msg = {
+    to: userEmail,  // User's email address
+    from: 'ansh.agrawal1_cs22@gla.ac.in',  
+    subject: 'Thank you for visiting our website!',
+    text: 'We appreciate you checking out our website. Thank you for visiting us!',
+    html: '<strong>We appreciate you checking out our website. Thank you for visiting us!</strong>',
+  };
+
+  sgMail.send(msg)
+}
 
 
 module.exports = router;

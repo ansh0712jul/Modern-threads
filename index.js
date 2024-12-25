@@ -13,7 +13,10 @@ const Reviewroutes = require("./routes/review.routes.js");
 const Authroutes = require("./routes/auth.routes.js");
 const Cartroutes = require("./routes/cart.routes.js");
 const User = require("./models/User.models.js");
+const sgMail = require("@sendgrid/mail");
+const dotenv = require("dotenv");
 
+dotenv.config();
 
 mongoose.connect("mongodb://127.0.0.1:27017/Modern-Threads")
   .then(() => {
@@ -65,6 +68,9 @@ app.use((req, res, next) => {
     res.locals.error = req.flash("error");
     next();
 });
+
+// set sendGrid API Key
+
 
 // Route handlers
 app.use(Productroutes);
